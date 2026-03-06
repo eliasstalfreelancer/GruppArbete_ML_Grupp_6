@@ -21,7 +21,7 @@ from sklearn.impute import SimpleImputer
 # ==================================
 
 
-def train_test_split_for_model(df: pd.DataFrame, traget_collum = "is_suspicious" ): #returns X_train, X_test, y_train, y_test
+def train_test_split_for_model(df: pd.DataFrame, traget_collum: str = "is_suspicious"  ):  #returns X_train, X_test, y_train, y_test
     y = df[traget_collum]
     X = X.drop(columns=["id"])
     X = df.drop(columns=[traget_collum])
@@ -36,9 +36,13 @@ def train_test_split_for_model(df: pd.DataFrame, traget_collum = "is_suspicious"
     
     return X_train, X_test, y_train, y_test
 
-def preprosseing():
+def preprosseing(categorical_features:list = [ # returns preprocessor  som ColumnTransformer obj
     
-    numeric_features = [
+    "event_type",
+    "category",
+    "region",
+    "device"
+                ], numeric_features:list= [
     "day",
     "account_age_days",
     "num_prev_listings",
@@ -50,23 +54,20 @@ def preprosseing():
     "urgency_words",
     "payment_attempt",
     "message_length",
-    "time_to_first_response_min"]
-
-    categorical_features = [
+    "time_to_first_response_min"]): 
     
-    "event_type",
-    "category",
-    "region",
-    "device"
-   ]
-    # fall om nya kategorier lägg tills vvv
+   
+
+    
+    # fall om nya kategorier på csv så krashar den inte vvv
     OneHotEncoder(handle_unknown="ignore")
     # ^^^^^^^^
+    # null hantering för numerica kategorier
     numeric_transformer = Pipeline([
     ("imputer", SimpleImputer(strategy="median")),
     ("scaler", StandardScaler())
     ])
-
+    # null hantering för alphabeterska kategorier
     categorical_transformer = Pipeline([
     ("imputer", SimpleImputer(strategy="most_frequent")),
     ("encoder", OneHotEncoder(handle_unknown="ignore"))
@@ -80,13 +81,13 @@ def preprosseing():
     )
     return preprocessor
 
-def create_pipeline(preprocessor):
+def create_pipeline(preprocessor: ColumnTransformer): 
     pipeline = Pipeline([
     ("preprocessing", preprocessor)
     ])
     return pipeline
 
-def fit_train_pipeline(pipeline:Pipeline, X_train,X_test):
+def fit_train_pipeline(pipeline:Pipeline, X_train:pd.DataFrame,X_test:pd.DataFrame):
     pipeline.fit(X_train)
     X_train_processed = pipeline.transform(X_train)
     X_test_processed = pipeline.transform(X_test)
