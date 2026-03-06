@@ -13,6 +13,7 @@ from sklearn.compose import ColumnTransformer
 # pipeline kopplar ihop preprocessing i ett workflow
 from sklearn.pipeline import Pipeline
 
+from sklearn.impute import SimpleImputer
 
 
 # ==================================
@@ -22,8 +23,9 @@ from sklearn.pipeline import Pipeline
 
 def train_test_split_for_model(df: pd.DataFrame, traget_collum = "is_suspicious" ): #returns X_train, X_test, y_train, y_test
     y = df[traget_collum]
-    X = df.drop(columns=[traget_collum])
     X = X.drop(columns=["id"])
+    X = df.drop(columns=[traget_collum])
+    
     X_train, X_test, y_train, y_test = train_test_split(
     X,
     y,
@@ -57,13 +59,19 @@ def preprosseing():
     "region",
     "device"
    ]
-    numeric_transformer =StandardScaler()
+    # fall om nya kategorier lägg tills vvv
+    OneHotEncoder(handle_unknown="ignore")
+    # ^^^^^^^^
+    numeric_transformer = Pipeline([
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", StandardScaler())
+    ])
 
-    #kan behövas ändras
-    categorical_transformer = OneHotEncoder(handle_unknown="ignore")
+    categorical_transformer = Pipeline([
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("encoder", OneHotEncoder(handle_unknown="ignore"))
+    ])
 
-
-   
     preprocessor = ColumnTransformer(
         transformers=[
             ("num", numeric_transformer, numeric_features),
