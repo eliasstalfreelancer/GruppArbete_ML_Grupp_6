@@ -7,3 +7,12 @@ Ansvarsområden:
 5.Threshold/prioritering (koppla kravkort → metric + FP/FN-konsekvens)
 6.Pitch & risker (presentation, rekommendation, begränsningar, nästa steg)
 Krav: I presentationen ska det framgå vem som ansvarade för vad (en rad per person).
+
+
+
+## Kravkort
+Stakeholder: Trust & Safety
+Prioritet: Hög recall och minimera False Negatives (FN). Det viktigaste är att inte missa farliga fall.
+
+## Strategi
+Vi använder en Top-X-prioritering där de X% fall med högst risk-score flaggas för granskning. Detta gör att de mest riskabla fallen prioriteras. Strategin är anpassad för att maximera recall och minska risken för missade farliga fall, även om det leder till fler False Positives. Vi testade flera värden på X och valde det som bäst matchade kravet på hög recall och låg andel missade fall.
