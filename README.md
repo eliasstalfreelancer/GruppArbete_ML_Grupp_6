@@ -10,10 +10,9 @@ Krav: I presentationen ska det framgå vem som ansvarade för vad (en rad per pe
 
 
 
-
 ## Kravkort
-Stakeholder: Trust  Safety
-Prioritet: Hög recall och minimera False Negatives (FN). Det viktigast är att inte missa farliga fall.
+Stakeholder: Trust & Safety
+Prioritet: Hög recall och minimera False Negatives (FN). Det viktigaste är att inte missa farliga fall.
 
-## Strategi: Top-50
-Vi flaggar de 50 fall med högst risk-score. Top-X strategin ökar chansen att fånga de mest riskabla fallen och minskar risken för att farliga fall missas, även om det innebär fler False Positives (FP).
+## Strategi
+Vi använder en Top-X-prioritering där de X% fall med högst risk-score flaggas för granskning. Detta gör att de mest riskabla fallen prioriteras. Strategin är anpassad för att maximera recall och minska risken för missade farliga fall, även om det leder till fler False Positives. Vi testade flera värden på X och valde det som bäst matchade kravet på hög recall och låg andel missade fall.
