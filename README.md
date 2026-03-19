@@ -1,12 +1,11 @@
 
 ## Ansvarsområden:
-1.Data & EDA (target-fördelning, missing values, 2 figurer + insikter) Milda
-2.Pipeline & preprocessing (leakage-säker, hantering av numeriskt/kategoriskt, reproducibility) Elias
-3.Modelljämförelse (baseline + minst 2 modeller, CV-upplägg) Azar
-4.Optimering (tuning av 1 vald modell, 1–2 parametrar) Ben
-5.Threshold/prioritering (koppla kravkort → metric + FP/FN-konsekvens) Ida
-6.Pitch & risker (presentation, rekommendation, begränsningar, nästa steg) Emmad
-Krav: I presentationen ska det framgå vem som ansvarade för vad (en rad per person).
+1. Data & EDA (target-fördelning, missing values, 2 figurer + insikter) :Milda
+2. Pipeline & preprocessing (leakage-säker, hantering av numeriskt/kategoriskt, reproducibility) :Elias
+3. Modelljämförelse (baseline + minst 2 modeller, CV-upplägg): Azar
+4. Optimering (tuning av 1 vald modell, 1–2 parametrar) :Ben
+5. Threshold/prioritering (koppla kravkort → metric + FP/FN-konsekvens) :Ida
+6. Pitch & risker (presentation, rekommendation, begränsningar, nästa steg): Emmad
 
 ## Hur man kör programent
 1. Klona projektet:
