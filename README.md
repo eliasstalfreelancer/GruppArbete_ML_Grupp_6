@@ -1,5 +1,5 @@
 
-Ansvarsområden:
+## Ansvarsområden:
 1.Data & EDA (target-fördelning, missing values, 2 figurer + insikter) Milda
 2.Pipeline & preprocessing (leakage-säker, hantering av numeriskt/kategoriskt, reproducibility) Elias
 3.Modelljämförelse (baseline + minst 2 modeller, CV-upplägg) Azar
